@@ -115,11 +115,20 @@ function Employee(name, email, hireDate) {
     this.name = name,
     this.age = age,
     this.email = email,
-    this.savedPosts = [{id:id, title:'', rating: rating} ]
-  }
+    this.savedPosts = [];
+      
 
-    User.prototype.addSavedPosts = function (id, title, rating){
+   }
+
+
+    User.prototype.addSavedPost = function (id, title, rating){
+      this.id = id;
+      this.title = title;
+      this.rating = rating;  
       this.savedPosts.push({id, title, rating});
+         
+      
+      
     }
 
   
@@ -130,6 +139,12 @@ function Employee(name, email, hireDate) {
   
   // Code here
   
+  User.prototype.removeSavedPost = function (id){
+    let index = this.savedPosts.findIndex(post => post === id);
+    return this.savedPosts.splice(index, 1)
+
+  }
+
   ////////// PROBLEM 7 //////////
   
   // You will continue to use the constructor function you created in problem 5.
@@ -137,3 +152,7 @@ function Employee(name, email, hireDate) {
   
   // Code here
   
+  User.prototype.changePostRating = function (){
+
+    
+  }
