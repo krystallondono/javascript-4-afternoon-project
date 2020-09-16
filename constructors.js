@@ -111,24 +111,27 @@ function Employee(name, email, hireDate) {
   
   // Code here
 
-  function User (name, age, email, savedPosts){
+  function User (name, age, email, savedPosts = []){
     this.name = name,
     this.age = age,
     this.email = email,
-    this.savedPosts = [];
+    this.savedPosts = savedPosts;
       
 
    }
 
 
-    User.prototype.addSavedPost = function (id, title, rating){
+    
+    function Make(id, title, rating){
       this.id = id;
       this.title = title;
       this.rating = rating;  
-      this.savedPosts.push({id, title, rating});
-         
-      
-      
+    }
+
+
+    User.prototype.addSavedPost = function (id, title, rating){
+      let arr = new Make(id, title, rating);
+      this.savedPosts.push(arr);
     }
 
   
@@ -152,7 +155,9 @@ function Employee(name, email, hireDate) {
   
   // Code here
   
-  User.prototype.changePostRating = function (){
-
-    
+  User.prototype.changePostRating = function (id, num){
+    for (let i = 0; i < this.savedPosts.length; i++)
+    if (this.savedPosts[i].id === id){
+      this.savedPosts[i].rating = num
+    }
   }
